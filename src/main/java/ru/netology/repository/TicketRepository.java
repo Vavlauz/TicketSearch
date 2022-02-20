@@ -21,12 +21,17 @@ public class TicketRepository {
     }
 
     public Ticket[] findAll(String fromAirport, String toAirport) {
+        int length = items.length - 1;
+        Ticket[] tmp = new Ticket[length];
+        int index = 0;
         for (Ticket item : items) {
             if (item.getFromAirport().contains(fromAirport) && item.getToAirport().contains(toAirport)) {
-                return new Ticket[]{item};
+                tmp[index] = item;
+                index++;
             }
         }
-        return null;
+        items = tmp;
+        return tmp;
     }
 
     public Ticket[] removeById(int id) {
