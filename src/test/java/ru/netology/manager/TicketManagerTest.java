@@ -26,15 +26,45 @@ class TicketManagerTest {
     }
 
     @Test
-    void shouldFind() {
+    void shouldFindAndNoCoincidences() {
         manager.saveTicket(first);
         manager.saveTicket(second);
         manager.saveTicket(third);
         manager.saveTicket(fourth);
 
 
-        Ticket[] expected = new Ticket[]{second,fourth};
-        Ticket[] actual = manager.findAllTickets("KUF", "OGZ");
+        Ticket[] expected = new Ticket[]{};
+        Ticket[] actual = manager.searchBy("KUF", "AKL");
+
+
+        assertArrayEquals(expected, actual);
+    }
+
+    @Test
+    void shouldFindCoincidences() {
+        manager.saveTicket(first);
+        manager.saveTicket(second);
+        manager.saveTicket(third);
+        manager.saveTicket(fourth);
+
+
+        Ticket[] expected = new Ticket[]{second, fourth};
+        Ticket[] actual = manager.searchBy("KUF", "OGZ");
+
+
+        assertArrayEquals(expected, actual);
+    }
+
+    @Test
+    void shouldRemove() {
+        manager.saveTicket(first);
+        manager.saveTicket(second);
+        manager.saveTicket(third);
+        manager.saveTicket(fourth);
+
+
+        Ticket[] expected = new Ticket[]{first, third, fourth};
+        Ticket[] actual = manager.removeByIdTickets(2);
 
 
         assertArrayEquals(expected, actual);

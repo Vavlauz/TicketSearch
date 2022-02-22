@@ -14,8 +14,27 @@ public class TicketManager {
         repository.save(ticket);
     }
 
-    public Ticket[] findAllTickets(String fromAirport, String toAirport) {
-        return repository.findAll(fromAirport, toAirport);
+    public Ticket[] searchBy(String from, String to) {
+        Ticket[] result = new Ticket[0];
+        for (Ticket ticket : repository.findAll()) {
+            if (matches(ticket, from, to)) {
+                int length = result.length + 1;
+                Ticket[] tmp = new Ticket[length];
+                System.arraycopy(result, 0, tmp, 0, result.length);
+                int lastIndex = tmp.length - 1;
+                tmp[lastIndex] = ticket;
+                result = tmp;
+            }
+        }
+        return result;
+    }
+
+    public boolean matches(Ticket ticket, String fromAirport, String toAirport) {
+        if (ticket.getFromAirport().contains(fromAirport) && ticket.getToAirport().contains(toAirport)) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     public Ticket[] removeByIdTickets(int id) {

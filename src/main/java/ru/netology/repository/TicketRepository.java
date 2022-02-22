@@ -5,6 +5,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import ru.netology.domain.Ticket;
 
+import java.util.Arrays;
+
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
@@ -20,18 +22,8 @@ public class TicketRepository {
         items = tmp;
     }
 
-    public Ticket[] findAll(String fromAirport, String toAirport) {
-        int length = items.length - 1;
-        Ticket[] tmp = new Ticket[length];
-        int index = 0;
-        for (Ticket item : items) {
-            if (item.getFromAirport().contains(fromAirport) && item.getToAirport().contains(toAirport)) {
-                tmp[index] = item;
-                index++;
-            }
-        }
-        items = tmp;
-        return tmp;
+    public Ticket[] findAll() {
+        return items;
     }
 
     public Ticket[] removeById(int id) {
