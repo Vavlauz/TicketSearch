@@ -36,7 +36,7 @@ public class TicketManager {
     public Ticket[] searchBy(String from, String to, Comparator<Ticket> comparator) {
         Ticket[] result = new Ticket[0];
         for (Ticket ticket : repository.findAll()) {
-            if (matches(ticket, from, to, (TicketByTravelTimeAscComparator) comparator)) {
+            if (matches(ticket, from, to)) {
                 int length = result.length + 1;
                 Ticket[] tmp = new Ticket[length];
                 System.arraycopy(result, 0, tmp, 0, result.length);
@@ -49,10 +49,8 @@ public class TicketManager {
         return result;
     }
 
-    public boolean matches(Ticket ticket, String fromAirport, String toAirport, TicketByTravelTimeAscComparator ticketByTravelTimeAscComparator ) {
-        if (ticket.getFromAirport().contains(fromAirport) && ticket.getToAirport().contains(toAirport));
-        if (ticketByTravelTimeAscComparator.compare(ticket, ticket) < 0)
-        {
+    public boolean matches(Ticket ticket, String fromAirport, String toAirport ) {
+        if (ticket.getFromAirport().contains(fromAirport) && ticket.getToAirport().contains(toAirport)){
             return true;
         } else {
             return false;
