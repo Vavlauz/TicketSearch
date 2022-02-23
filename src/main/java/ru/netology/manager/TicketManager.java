@@ -1,5 +1,6 @@
 package ru.netology.manager;
 
+import ru.netology.comporator.TicketByPriceAscComparator;
 import ru.netology.domain.Ticket;
 import ru.netology.repository.TicketRepository;
 
@@ -44,7 +45,7 @@ public class TicketManager {
                 result = tmp;
             }
         }
-        Arrays.sort(result);
+        Arrays.sort(result,comparator);
         return result;
     }
 
