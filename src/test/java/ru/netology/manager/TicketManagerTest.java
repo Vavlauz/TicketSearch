@@ -1,6 +1,7 @@
 package ru.netology.manager;
 
 import org.junit.jupiter.api.Test;
+import ru.netology.comporator.TicketByTravelTimeAscComparator;
 import ru.netology.domain.Ticket;
 import ru.netology.repository.TicketRepository;
 
@@ -65,7 +66,7 @@ class TicketManagerTest {
 
 
         Ticket[] expected = new Ticket[]{fourth};
-        Ticket[] actual = manager.searchBy("KUF", "OGZ", Ticket::compareTo);
+        Ticket[] actual = manager.searchBy("KUF", "OGZ", ????);
 
 
         assertArrayEquals(expected, actual);
