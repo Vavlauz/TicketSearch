@@ -61,7 +61,6 @@ class TicketManagerTest {
         manager.saveTicket(second);
         manager.saveTicket(third);
         manager.saveTicket(fourth);
-        manager.saveTicket(fifth);
 
 
         Ticket[] expected = new Ticket[]{fourth, second};
