@@ -1,10 +1,12 @@
 package ru.netology.manager;
 
 import org.junit.jupiter.api.Test;
+import ru.netology.comporator.TicketByPriceAscComparator;
 import ru.netology.domain.Ticket;
 import ru.netology.repository.TicketRepository;
 
 import java.util.Arrays;
+import java.util.Comparator;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -25,36 +27,6 @@ class TicketManagerTest {
         assertArrayEquals(expected, actual);
     }
 
-    @Test
-    void shouldFindAndNoCoincidences() {
-        manager.saveTicket(first);
-        manager.saveTicket(second);
-        manager.saveTicket(third);
-        manager.saveTicket(fourth);
-
-
-        Ticket[] expected = new Ticket[]{};
-        Ticket[] actual = manager.searchBy("KUF", "AKL");
-        Arrays.sort(actual);
-
-        assertArrayEquals(expected, actual);
-    }
-
-    @Test
-    void shouldFindCoincidences() {
-        manager.saveTicket(first);
-        manager.saveTicket(second);
-        manager.saveTicket(third);
-        manager.saveTicket(fourth);
-
-
-        Ticket[] expected = new Ticket[]{second, fourth};
-        Ticket[] actual = manager.searchBy("KUF", "OGZ");
-        Arrays.sort(actual);
-
-        assertArrayEquals(expected, actual);
-    }
-
 //    @Test
 //    void shouldFindAndNoCoincidences() {
 //        manager.saveTicket(first);
@@ -64,8 +36,8 @@ class TicketManagerTest {
 //
 //
 //        Ticket[] expected = new Ticket[]{};
-//        Ticket[] actual = manager.searchBy("KUF", "AKL",);
-//        Arrays.sort(actual, TicketByPriceAscComparator);
+//        Ticket[] actual = manager.searchBy("KUF", "AKL");
+//        Arrays.sort(actual);
 //
 //        assertArrayEquals(expected, actual);
 //    }
@@ -80,10 +52,40 @@ class TicketManagerTest {
 //
 //        Ticket[] expected = new Ticket[]{second, fourth};
 //        Ticket[] actual = manager.searchBy("KUF", "OGZ");
-//
+//        Arrays.sort(actual);
 //
 //        assertArrayEquals(expected, actual);
 //    }
+
+    @Test
+    void shouldFindCoincidences() {
+        manager.saveTicket(first);
+        manager.saveTicket(second);
+        manager.saveTicket(third);
+        manager.saveTicket(fourth);
+
+
+        Ticket[] expected = new Ticket[]{};
+        Ticket[] actual = manager.searchBy("KUF", "AKL", (Comparator<Ticket>) first);
+        Arrays.sort(actual, Comparator.naturalOrder().compare(first -> second), ;
+
+        assertArrayEquals(expected, actual);
+    }
+
+    @Test
+    void shouldFindNoCoincidences() {
+        manager.saveTicket(first);
+        manager.saveTicket(second);
+        manager.saveTicket(third);
+        manager.saveTicket(fourth);
+
+
+        Ticket[] expected = new Ticket[]{second, fourth};
+        Ticket[] actual = manager.searchBy("KUF", "OGZ");
+
+
+        assertArrayEquals(expected, actual);
+    }
 
     @Test
     void shouldRemove() {
