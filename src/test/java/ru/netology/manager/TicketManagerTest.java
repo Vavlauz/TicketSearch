@@ -13,7 +13,7 @@ class TicketManagerTest {
     private final Ticket first = new Ticket(1, 1000, "LED", "GOJ", 4);
     private final Ticket second = new Ticket(2, 2000, "KUF", "OGZ", 10);
     private final Ticket third = new Ticket(3, 3000, "AGP", "AKL", 12);
-    private final Ticket fourth = new Ticket(4, 4000, "KUF", "OGZ", 4);
+    private final Ticket fourth = new Ticket(4, 4000, "KUF", "OGZ", 5);
 
     @Test
     void shouldSort() {
@@ -35,7 +35,7 @@ class TicketManagerTest {
 
         Ticket[] expected = new Ticket[]{};
         Ticket[] actual = manager.searchBy("KUF", "AKL");
-
+        Arrays.sort(actual);
 
         assertArrayEquals(expected, actual);
     }
@@ -50,10 +50,40 @@ class TicketManagerTest {
 
         Ticket[] expected = new Ticket[]{second, fourth};
         Ticket[] actual = manager.searchBy("KUF", "OGZ");
-
+        Arrays.sort(actual);
 
         assertArrayEquals(expected, actual);
     }
+
+//    @Test
+//    void shouldFindAndNoCoincidences() {
+//        manager.saveTicket(first);
+//        manager.saveTicket(second);
+//        manager.saveTicket(third);
+//        manager.saveTicket(fourth);
+//
+//
+//        Ticket[] expected = new Ticket[]{};
+//        Ticket[] actual = manager.searchBy("KUF", "AKL",);
+//        Arrays.sort(actual, TicketByPriceAscComparator);
+//
+//        assertArrayEquals(expected, actual);
+//    }
+//
+//    @Test
+//    void shouldFindCoincidences() {
+//        manager.saveTicket(first);
+//        manager.saveTicket(second);
+//        manager.saveTicket(third);
+//        manager.saveTicket(fourth);
+//
+//
+//        Ticket[] expected = new Ticket[]{second, fourth};
+//        Ticket[] actual = manager.searchBy("KUF", "OGZ");
+//
+//
+//        assertArrayEquals(expected, actual);
+//    }
 
     @Test
     void shouldRemove() {

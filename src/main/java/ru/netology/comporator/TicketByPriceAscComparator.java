@@ -1,13 +1,17 @@
-package ru.netology.domain;
+package ru.netology.comporator;
 
-public class Ticket implements Comparable<Ticket> {
+import ru.netology.domain.Ticket;
+
+import java.util.Comparator;
+
+public class TicketByPriceAscComparator implements Comparator<Ticket> {
     private int id;
     private int price;
     private String fromAirport;
     private String toAirport;
     private int travelTime;
 
-    public Ticket(int id, int price, String fromAirport, String toAirport, int travelTime) {
+    public TicketByPriceAscComparator(int id, int price, String fromAirport, String toAirport, int travelTime) {
         this.id = id;
         this.price = price;
         this.fromAirport = fromAirport;
@@ -55,10 +59,11 @@ public class Ticket implements Comparable<Ticket> {
         this.travelTime = travelTime;
     }
 
-
     @Override
-    public int compareTo(Ticket o) {
-        return price - o.price;
+    public int compare(Ticket o1, Ticket o2) {
+        return o1.getTravelTime() - o2.getTravelTime();
     }
 }
+
+
 
