@@ -11,14 +11,14 @@ import static org.junit.jupiter.api.Assertions.*;
 class TicketManagerTest {
     private TicketManager manager = new TicketManager(new TicketRepository());
     private final Ticket first = new Ticket(1, 1000, "LED", "GOJ", 4);
-    private final Ticket second = new Ticket(2, 2000, "KUF", "OGZ", 10);
+    private final Ticket second = new Ticket(2, 6000, "KUF", "OGZ", 10);
     private final Ticket third = new Ticket(3, 3000, "AGP", "AKL", 12);
     private final Ticket fourth = new Ticket(4, 4000, "KUF", "OGZ", 4);
 
     @Test
     void shouldSort() {
-        Ticket[] expected = new Ticket[]{first, second, third};
-        Ticket[] actual = new Ticket[]{third, first, second};
+        Ticket[] expected = new Ticket[]{first, third, fourth, second};
+        Ticket[] actual = new Ticket[]{third, first, second, fourth};
 
         Arrays.sort(actual);
 
@@ -48,7 +48,7 @@ class TicketManagerTest {
         manager.saveTicket(fourth);
 
 
-        Ticket[] expected = new Ticket[]{second, fourth};
+        Ticket[] expected = new Ticket[]{fourth, second};
         Ticket[] actual = manager.searchBy("KUF", "OGZ");
 
 
