@@ -6,7 +6,6 @@ import ru.netology.domain.Ticket;
 import ru.netology.repository.TicketRepository;
 
 import java.util.Arrays;
-import java.util.Comparator;
 
 import static org.junit.jupiter.api.Assertions.*;
 

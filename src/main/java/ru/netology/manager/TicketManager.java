@@ -18,21 +18,6 @@ public class TicketManager {
         repository.save(ticket);
     }
 
-//    public Ticket[] searchBy(String from, String to) {
-//        Ticket[] result = new Ticket[0];
-//        for (Ticket ticket : repository.findAll()) {
-//            if (matches(ticket, from, to)) {
-//                int length = result.length + 1;
-//                Ticket[] tmp = new Ticket[length];
-//                System.arraycopy(result, 0, tmp, 0, result.length);
-//                int lastIndex = tmp.length - 1;
-//                tmp[lastIndex] = ticket;
-//                result = tmp;
-//            }
-//        }
-//        return result;
-//    }
-
     public Ticket[] searchBy(String from, String to, Comparator<Ticket> comparator) {
         Ticket[] result = new Ticket[0];
         for (Ticket ticket : repository.findAll()) {
